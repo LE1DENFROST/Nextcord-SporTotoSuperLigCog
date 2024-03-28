@@ -50,10 +50,10 @@ class SporTotoCog(commands.Cog):
             # İstenmeyen kelimeler
             unwanted_words = ["FUTBOL A.Ş.", "SİLTAŞ YAPI", "TÜMOSAN", "A.Ş.", "VAVACARS", "CORENDON", "ATAKAŞ", "MKE", "YILPORT", "MONDİHOME", "YUKATEL", "RAMS", "FUTBOL KULÜBÜ", "EMS YAPI", "BITEXEN", "ÇAYKUR"]
 
-            # Takım adlarını liste olarak al
+        
             team_names = [team['name'] for team in teams]
 
-            # İstenmeyen kelimeleri çıkar ve temizlenmiş takım adlarını ekleyin
+    
             cleaned_team_names = []
             for name in team_names:
                 cleaned_name = name
@@ -66,11 +66,11 @@ class SporTotoCog(commands.Cog):
            
             embed = nextcord.Embed(title="Süper Lig Puan Durumu ",color=nextcord.Color.brand_red())
 
-            # Tablo başlığı
+        
             embed.add_field(name="", value="**Takım-- | OM | G | B | M | AG | YG | A | P | 📜**", inline=False)
 
 
-            # Emoji sözlüğünü tanımla
+            
             emojis = {
                 "GALATASARAY": ":lion_face:",
                 "FENERBAHÇE": ":bird:",
@@ -95,7 +95,7 @@ class SporTotoCog(commands.Cog):
     
             }
 
-            # Tabloya takımları ekle
+            
             for cleaned_name, original_name, team in zip(cleaned_team_names, team_names, teams):
                 row = f"**{cleaned_name}--| {team['played']:<3} | {team['wins']:<3} | {team['draws']:<3} | {team['losses']:<3} | {team['goals_for']:<3} | {team['goals_against']:<3} | {team['average']:<3} | {team['points']:<3} |**"
                 embed.add_field(name="\n", value=f"{emojis.get(cleaned_name,'')} - {row}", inline=False)
